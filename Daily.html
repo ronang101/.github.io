@@ -1,0 +1,145 @@
+<!-- This line is a document type declaration and it tells the browser that this document is an HTML5 document. -->
+<!DOCTYPE html>
+<html>
+<!-- The head element is a container for metadata (data about data) and is placed between the <html> tag and the <body> tag. -->
+<head>
+    <!-- The title element is required in all HTML documents and it defines the title of the document, which is shown in the browser's title bar or in the page's tab. -->
+    <title>Random Flag Generator</title>
+    <!-- The link tag here is used to link an external CSS file. -->
+    <!-- The href attribute specifies the path to the CSS file. -->
+    <!-- The rel attribute defines the relationship between the HTML and the linked file. -->
+    <link rel="stylesheet" href="stylesdaily.css">
+    <!-- A navigation bar is created by using a 'nav' HTML element.
+    Within the 'nav' element, an unordered list (ul) is created for the navigation items.
+    Each list item (li) represents a navigation item.
+    Inside each 'li', there is a hyperlink (a) that links to a different page. -->
+    <nav class="navbar">
+        <ul>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">&#9776;</a>
+                <div class="dropdown-content">
+                    <a href="index.html">Home</a>
+                    <a href="#" id="termsBtn">Terms of Service</a>
+                    <a href="#" id="privacyBtn">Privacy Statement</a>
+                </div>
+            </li>
+        </ul>
+        <div class="logo-container">
+            <img src="Logo.png" alt="Logo" class="logo">
+        </div>
+    </nav>
+</head>
+<!-- The body element contains the content of the document, such as text, images, hyperlinks, tables, lists, etc. -->
+<body>
+    <!-- Modal content for Terms of Service -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Terms and Conditions</h2>
+            <p>Last updated: July 7, 2023</p>
+    
+            <h3>Introduction</h3>
+            <p>Please read these Terms and Conditions ("Terms", "Terms and Conditions") carefully before using the Flagogories website (the "Service"). Your access to and use of the Service is conditioned upon your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who wish to access or use the Service.</p>
+    
+            <h3>Agreement to Terms</h3>
+            <p>By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you do not have permission to access the Service.</p>
+    
+            <h3>Intellectual Property</h3>
+            <p>The Service and its original content, features and functionality are and will remain the exclusive property of Flagogories. The Service is protected by copyright, trademark, and other laws of both the United Kingdom and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.</p>
+    
+            <h3>Links To Other Web Sites</h3>
+            <p>Our Service may contain links to third party web sites or services that are not owned or controlled by Flagogories. Flagogories has no control over, and assumes no responsibility for the content, privacy policies, or practices of any third party web sites or services. We do not warrant the offerings of any of these entities/individuals or their websites.</p>
+    
+            <h3>Governing Law</h3>
+            <p>These Terms shall be governed and construed in accordance with the laws of United Kingdom, without regard to its conflict of law provisions.</p>
+    
+            <h3>Changes to Terms</h3>
+            <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+        </div>
+    </div>
+    
+
+<!-- Modal content for Privacy Statement -->
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Privacy Statement</h2>
+        <p>Last updated: July 7, 2023</p>
+
+        <h3>Introduction</h3>
+        <p>Flagogories operates the Flagogories website (the "Service"). This page informs you of our policies regarding the collection, use and disclosure of Personal Information when you use our Service.</p>
+
+        <h3>Use of Information</h3>
+        <p>We will not use or share your information with anyone except as described in this Privacy Policy.</p>
+
+        <h3>Information Collection And Use</h3>
+        <p>While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to, your email address, name ("Personal Information"). We collect this information for the purpose of providing the Service, identifying and communicating with you, responding to your requests/inquiries, servicing your purchase orders, and improving our services.</p>
+
+        <h3>Security</h3>
+        <p>The security of your Personal Information is important to us, and we strive to implement and maintain reasonable, commercially acceptable security procedures and practices appropriate to the nature of the information we store, in order to protect it from unauthorized access, destruction, use, modification, or disclosure. However, please be aware that no method of transmission over the internet, or method of electronic storage is 100% secure and we are unable to guarantee the absolute security of the Personal Information we have collected from you.</p>
+
+        <h3>Changes To This Privacy Policy</h3>
+        <p>This Privacy Policy is effective as of July 7, 2023 and will remain in effect except with respect to any changes in its provisions in the future, which will be in effect immediately after being posted on this page. We reserve the right to update or change our Privacy Policy at any time and you should check this Privacy Policy periodically. Your continued use of the Service after we post any modifications to the Privacy Policy on this page will constitute your acknowledgement of the modifications and your consent to abide and be bound by the modified Privacy Policy.</p>
+    </div>
+</div>
+
+
+
+    <!-- This line creates a button with the text "Generate". The 'id' attribute is used to specify a unique id for the HTML element. This id can be used in a JavaScript file to access and manipulate the element with the specific id. -->
+    <button id="generateBtn">PLAY DAILY GAME!</button>
+    <div id="countryName" class="country-name"></div>
+    <!-- This line creates an image element. The 'src' attribute specifies the source URL of the image. In this case, the source URL is initially empty. -->
+
+    <img id="flag" src="" alt="flag" />
+    <!-- "ul" is an HTML tag that defines an unordered (bulleted) list. It should be paired with "li" tags, which define list items. -->
+        
+    <!-- The banner is initially hidden (with 'display: none') and centered on the screen.
+    When all sports have been clicked, JavaScript will update the 'score' span with the total score
+    and make the banner visible (by changing 'display' to 'block'). -->
+    <div id="scoreBanner" style="display: none; text-align: center; margin-top: 50px; font-size: 30px;">
+        You Scored <span id="score">0</span>!
+    </div>
+    <div class="switch">
+
+        <!-- Begin a label element. In HTML, labels are used to describe the purpose of an input element. -->
+        <label>
+        
+          <!-- Add a class "switch-label" to the span where you display your text -->
+          <span class="switch-label">Display country names?</span>
+          <!-- Begin an input element of type "checkbox". This will create a checkbox that the user can check or uncheck. 
+               The id "countryNamesSwitch" allows us to refer to this specific checkbox elsewhere in our code, such as in JavaScript event handlers. -->
+          <input type="checkbox" id="countryNamesSwitch">
+          
+          <!-- Begin a span with the class "slider". This will create the visual "switch" that the user can interact with. 
+               Because it's inside the label for the checkbox, clicking on the switch will check or uncheck the checkbox. -->
+          <span class="slider"></span>
+          
+        <!-- Close the label element. -->
+        </label>
+        
+      <!-- Close the "switch" div. -->
+      </div>
+    <button id="solutionBtn" style="display: none;">Find Best Solution?</button>
+    <ul id="sports">
+        <!-- These are the list items. Each sport is an item in the list. 
+        They all have the class "sport", so they can be selected as a group in the JavaScript. -->
+        <li class="sport" data-sport="Football">Football</li>
+        <li class="sport" data-sport="Tennis">Tennis</li>
+        <li class="sport" data-sport="Rugby">Rugby</li>
+        <li class="sport" data-sport="Baseball">Baseball</li>
+        <li class="sport" data-sport="Cricket">Cricket</li>
+        <li class="sport" data-sport="Hockey">Hockey</li>
+        <li class="sport" data-sport="Volleyball">Volleyball</li>
+        <li class="sport" data-sport="Basketball">Basketball</li>
+        <li class="sport" data-sport="Gymnastics">Gymnastics</li>
+        <li class="sport" data-sport="Badminton">Badminton</li>
+            
+    </ul>
+
+
+    <!-- This is the script tag. It includes a JavaScript file. The JavaScript code in the file will be executed. -->
+
+    <!-- This line includes the JavaScript file 'script.js' into the HTML document. The 'src' attribute specifies the source file of the script. -->
+    <script src="script_daily.js"></script>
+</body>
+</html>
