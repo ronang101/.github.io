@@ -149,7 +149,6 @@ function generateCountry() {
             countriesList = countriesList.filter(country => country !== currentCountry);
             const countryCode = randomCountry.cca2.toLowerCase();  // Get the country code of the selected country, convert it to lowercase.
             flagImage.src = `https://flagcdn.com/${countryCode}.svg`;  // Update the 'flagImage' source URL with the flag of the selected country.
-            console.log('countryCode:', countryCode);  // Log the country code for debugging purposes.
 
             // Here we are hiding the button after the click
                         
@@ -168,7 +167,6 @@ function generateCountry() {
                         // Add the current sport's ranking to the selected country's rankings
                         const sportRanking = data[sport] ? data[sport] : '200';
                         selectedCountriesAndRankings[currentCountry][sport] = parseInt(sportRanking);
-                        console.log(selectedCountriesAndRankings[currentCountry][sport])
                     })
                     .catch(error => console.error('An error occurred:', error)); })
    
@@ -214,37 +212,18 @@ replayBtn.addEventListener('click', function() {
     })
 })
 
-function getAllPermutations(list) {
-    // Base Case:
-    // If the list has only one element, the only permutation of this list is the list itself.
-    // So, we return an array containing this one-item list.
+function* getAllPermutations(list) {
     if (list.length === 1) {
-        return [list];
-    }
-
-    const permutations = [];  // This is where we will store all permutations of the given list.
-
-    // We will generate permutations by removing each element from the list and generating all permutations of the remaining list.
-    // We will then add the removed element to the beginning of each of these permutations.
-    for (let i = 0; i < list.length; i++) {
-        const currentElement = list[i];  // This is the element we are removing from the list.
-
-        // We create a new list which is the original list without the current element.
-        const remainingList = list.slice(0, i).concat(list.slice(i + 1));
-
-        // Recursive Case:
-        // We call our function recursively to get all permutations of the remaining list.
-        const remainingPermutations = getAllPermutations(remainingList);
-
-        // We add the removed element to the beginning of each permutation of the remaining list,
-        // and add each of these new permutations to our list of all permutations.
-        for (let perm of remainingPermutations) {
-            permutations.push([currentElement].concat(perm));
+        yield list;
+    } else {
+        for (let i = 0; i < list.length; i++) {
+            const currentElement = list[i];
+            const remainingList = list.slice(0, i).concat(list.slice(i + 1));
+            for (let perm of getAllPermutations(remainingList)) {
+                yield [currentElement].concat(perm);
+            }
         }
     }
-
-    // Finally, we return our list of all permutations of the original list.
-    return permutations;
 }
 
 
@@ -253,13 +232,13 @@ function getAllPermutations(list) {
 function calculateSmallestScore() {
     // Get the list of all countries.
     const countries = Object.keys(selectedCountriesAndRankings);
-    console.log("Countries:", countries);
+
     // Get the list of all sports for the first country (assuming that the same list of sports applies to all countries).
     const sports = countries.length > 0 ? Object.keys(selectedCountriesAndRankings[countries[0]]) : [];
-    console.log("Sports:", sports);
+
     // Get all permutations of the list of sports.
     const sportPermutations = getAllPermutations(sports);
-    console.log("Permutations:", sportPermutations);
+
     let minScore = Infinity;  // Initialize the minimum score to infinity.
     let minPermutation = null;  // Initialize the permutation which gives the minimum score to null.
 
@@ -279,13 +258,10 @@ function calculateSmallestScore() {
         if (score < minScore) {
             minScore = score;
             minPermutation = perm;
-            console.log(`Score for permutation ${perm}:`, score);
         }
     }
 
     // Print the permutation which gives the minimum score and the minimum score itself.
-    console.log("Best assignment of sports to countries:", minPermutation);
-    console.log("Minimum possible score:", minScore);
 
     // Return the minimum score.
     return minScore;
@@ -308,7 +284,6 @@ function sportsrankings() {
         
         // If the element has not been clicked before, we add the 'active' class to it. 
         this.classList.remove('clickable');
-        console.log(`currentCountry: ${currentCountry}, sport: ${sport}`);
 
 
 
@@ -319,7 +294,6 @@ function sportsrankings() {
         // The 'then' method returns a Promise. It takes up to two arguments: callback functions for the success and failure cases of the Promise.
         .then(response => {
             // Log the entire response to the console. This is just for debugging purposes.
-            console.log('Response:', response);
 
             // The 'ok' read-only property of the Response interface contains a boolean stating whether the response was successful (status in the range 200-299) or not.
             if (!response.ok) {
