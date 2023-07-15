@@ -3,6 +3,7 @@
 <html>
 <!-- The head element is a container for metadata (data about data) and is placed between the <html> tag and the <body> tag. -->
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The title element is required in all HTML documents and it defines the title of the document, which is shown in the browser's title bar or in the page's tab. -->
     <title>Random Flag Generator</title>
     <!-- The link tag here is used to link an external CSS file. -->
@@ -14,7 +15,7 @@
     Each list item (li) represents a navigation item.
     Inside each 'li', there is a hyperlink (a) that links to a different page. -->
     <nav class="navbar">
-        <ul>
+        <ul class="dropdownlist">
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn">&#9776;</a>
                 <div class="dropdown-content">
@@ -27,8 +28,12 @@
         <div class="logo-container">
             <img src="Logo.png" alt="Logo" class="logo">
         </div>
+        <div class="settings-container">
+            <a href="#" id="settingsBtn"><i class="fas fa-cog"></i></a>  <!-- Unicode for cog -->
+        </div>
+        
     </nav>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 </head>
 <!-- The body element contains the content of the document, such as text, images, hyperlinks, tables, lists, etc. -->
 <body>
@@ -88,7 +93,7 @@
 
     <!-- This line creates a button with the text "Generate". The 'id' attribute is used to specify a unique id for the HTML element. This id can be used in a JavaScript file to access and manipulate the element with the specific id. -->
     <button id="generateBtn">GENERATE</button>
-    <div id="countryName" class="country-name"></div>
+    <div id="countryName" class="country-name" style="display: block;"></div>
     <!-- This line creates an image element. The 'src' attribute specifies the source URL of the image. In this case, the source URL is initially empty. -->
     <img id="flag" src="" alt="flag" />
     <!-- "ul" is an HTML tag that defines an unordered (bulleted) list. It should be paired with "li" tags, which define list items. -->
@@ -96,30 +101,10 @@
     <!-- The banner is initially hidden (with 'display: none') and centered on the screen.
     When all sports have been clicked, JavaScript will update the 'score' span with the total score
     and make the banner visible (by changing 'display' to 'block'). -->
-    <div id="scoreBanner" style="display: none; text-align: center; margin-top: 50px; font-size: 30px;">
+    <div id="scoreBanner">
         You Scored <span id="score">0</span>!
     </div>
-<!-- Begin a "switch" div. The class name "switch" allows us to style this div using the .switch CSS we defined earlier. -->
-<div class="switch">
 
-    <!-- Begin a label element. In HTML, labels are used to describe the purpose of an input element. -->
-    <label>
-    
-      <!-- Add a class "switch-label" to the span where you display your text -->
-      <span class="switch-label">Display country names?</span>
-      <!-- Begin an input element of type "checkbox". This will create a checkbox that the user can check or uncheck. 
-           The id "countryNamesSwitch" allows us to refer to this specific checkbox elsewhere in our code, such as in JavaScript event handlers. -->
-      <input type="checkbox" id="countryNamesSwitch">
-      
-      <!-- Begin a span with the class "slider". This will create the visual "switch" that the user can interact with. 
-           Because it's inside the label for the checkbox, clicking on the switch will check or uncheck the checkbox. -->
-      <span class="slider"></span>
-      
-    <!-- Close the label element. -->
-    </label>
-    
-  <!-- Close the "switch" div. -->
-  </div>
   
     <button id="replayBtn" style="display: none;">Replay</button>
     <button id="solutionBtn" style="display: none;">Find Best Solution?</button>
@@ -138,6 +123,27 @@
         <li class="sport" data-sport="Badminton">Badminton</li>
             
     </ul>
+        <!-- Modal content for Settings -->
+        <div id="settingsModal" class="setmodal">
+            <div class="set-modal-content">
+                
+                <h2>SETTINGS
+                    <span class="close-button">&times;</span>
+                </h2>
+                <ul class="settings-list">
+                    <li class="settings-row">
+                        <span class="setting-description">Hide Country Names?</span>
+                        <div class="switch">
+                            <label>
+                                <input type="checkbox" id="countryNamesSwitch">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </li>
+                    <!-- Add more settings here -->
+                </ul>
+            </div>
+        </div>
 
 
     <!-- This is the script tag. It includes a JavaScript file. The JavaScript code in the file will be executed. -->
