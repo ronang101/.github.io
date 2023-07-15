@@ -16,13 +16,17 @@ var dropdowns = document.getElementsByClassName("dropbtn");
 // Get the modals
 var termsModal = document.getElementById("termsModal");
 var privacyModal = document.getElementById("privacyModal");
-
+var setmodal = document.getElementById("settingsModal");
+var setmodalcontent = document.getElementById("set-modal-content");
 // Get the buttons that open the modals
 var termsBtn = document.getElementById("termsBtn");
 var privacyBtn = document.getElementById("privacyBtn");
+var setbtn = document.getElementById("settingsBtn");
 
 // Get the <span> elements that close the modals
 var spans = document.getElementsByClassName("close");
+
+
 
 // List of your preferred countries
 const availableCountries = ['Ireland',   'France',   'New Zealand',  'South Africa', 'Scotland', 'England',  'Australia',    'Argentina',    'Wales',    'Japan',    'Georgia',  'Samoa',    'Fiji', 'Italy',    'Tonga',    'Portugal', 'Uruguay',  'United States',    'Romania',  'Spain',    'Namibia',  'Chile',    'Canada',   'Hong Kong',    'russia',   'Netherlands',  'Switzerland',  'Brazil',   'Belgium',  'South Korea',  'Zimbabwe', 'Germany',  'Kenya',    'Poland',   'Czechia',  'Ukraine',  'Colombia', 'Tunisia',  'Sweden',   'Paraguay', 'Philippines',  'Croatia',  'Uganda',   'Madagascar',   'Malta',    'Sri Lanka',    'Morocco',  'Ivory Coast',  'Mexico',   'Trinidad and Tobago',  'Lithuania',    'Malaysia', 'Cook Islands', 'Cayman Islands',   'Singapore',    'Senegal',  'Moldova',  'Guyana',   'Bulgaria', 'Latvia',   'Israel',   'United Arab Emirates', 'Kazakhstan',   'Luxembourg',   'Taiwan',   'Jamaica',  'Bermuda',  'Zambia',   'Nigeria',  'Hungary',  'Serbia',   'Finland',  'Denmark',  'Guam', 'Peru', 'Algeria',  'Botswana', 'Venezuela',    'Thailand', 'Slovenia', 'Saint Vincent and the Grenadines', 'China',    'Barbados', 'Papua New Guinea', 'Ghana',    'India',    'Austria',  'Andorra',  'Uzbekistan',   'Burkina Faso', 'Pakistan', 'Mauritius',    'Bosnia and Herzegovina',   'laos', 'Iran', 'Rwanda',   'Costa Rica',   'Niue', 'Bahamas',  'Burundi',  'Eswatini', 'Norway',   'Solomon Islands',  'Cameroon', 'Indonesia',    'Monaco',   'Greece',   'Vanuatu',  'American Samoa'];
@@ -43,9 +47,9 @@ countryNamesSwitch.addEventListener('change', function() {
 
     // If the switch is checked, show the country names, else hide them
   if (this.checked) {
-    countryNameDisplay.style.display = 'block';
-  } else {
     countryNameDisplay.style.display = 'none';
+  } else {
+    countryNameDisplay.style.display = 'block';
   }
 
 });
@@ -59,6 +63,10 @@ privacyBtn.onclick = function() {
     privacyModal.style.display = "block";
 }
 
+setbtn.onclick = function() {
+    setmodal.style.display = "block";
+  }
+
 // When the user clicks on <span> (x), close the modal
 for (let i = 0; i < spans.length; i++) {
     spans[i].onclick = function() {
@@ -66,15 +74,12 @@ for (let i = 0; i < spans.length; i++) {
         privacyModal.style.display = "none";
     }
 }
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == termsModal) {
-        termsModal.style.display = "none";
-    } else if (event.target == privacyModal) {
-        privacyModal.style.display = "none";
-    }
+let closeButton = document.querySelector('.close-button');
+closeButton.onclick = function() {
+    setmodal.style.display = "none";
 }
+
+
 
 // Loop through the dropdown buttons to toggle between hiding and showing its dropdown content
 for (let i = 0; i < dropdowns.length; i++) {
@@ -183,7 +188,8 @@ generateBtn.addEventListener('click', function() {
 
     sportsList.forEach((sportElement) => {
         sportElement.classList.add('clickable');
-        sportElement.style.display = 'block';
+        sportElement.style.display = 'flex';
+        sportsListContainer.style.display = 'flex';
     });
 });
 
@@ -331,7 +337,7 @@ function sportsrankings() {
                     // Calculate the smallest possible score
 
                     banner.textContent = `You Scored ${totalScore}!`;
-                    banner.style.display = 'block';
+                    banner.style.display = 'flex';
                     replayBtn.style.display = 'block';
                     solutionBtn.style.display ='block';
                     solutionBtn.classList.add('clickable');
@@ -367,7 +373,7 @@ function FindSol()  {
     this.removeEventListener('click', arguments.callee);
     let smallestScore = calculateSmallestScore()
 
-    banner.textContent = `You Scored ${totalScore}! The smallest possible score was ${smallestScore}.`;
+    banner.innerHTML = `<div class="score">You Scored ${totalScore}!</div><div class="smallest-score">The smallest possible score was ${smallestScore}.</div>`;
 }
 
 solutionBtn.addEventListener('click', FindSol)
