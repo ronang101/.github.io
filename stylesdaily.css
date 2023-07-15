@@ -27,6 +27,7 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
 
+  width: 100%;
   text-align: center;
   font-size: 2rem;
   /* Set the text color to a lighter gray (#ddd) */
