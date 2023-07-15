@@ -10,10 +10,12 @@ var dropdowns = document.getElementsByClassName("dropbtn");
 // Get the modals
 var termsModal = document.getElementById("termsModal");
 var privacyModal = document.getElementById("privacyModal");
-
+var setmodal = document.getElementById("settingsModal");
+var setmodalcontent = document.getElementById("set-modal-content");
 // Get the buttons that open the modals
 var termsBtn = document.getElementById("termsBtn");
 var privacyBtn = document.getElementById("privacyBtn");
+var setbtn = document.getElementById("settingsBtn");
 
 // Get the <span> elements that close the modals
 var spans = document.getElementsByClassName("close");
@@ -67,6 +69,15 @@ termsBtn.onclick = function() {
 
 privacyBtn.onclick = function() {
     privacyModal.style.display = "block";
+}
+
+setbtn.onclick = function() {
+    setmodal.style.display = "block";
+  }
+
+  let closeButton = document.querySelector('.close-button');
+closeButton.onclick = function() {
+    setmodal.style.display = "none";
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -178,7 +189,8 @@ generateBtn.addEventListener('click', async function() {
 
         sportsList.forEach((sportElement) => {
             sportElement.classList.add('clickable');
-            sportElement.style.display = 'block';
+            sportElement.style.display = 'flex';
+            sportsListContainer.style.display = 'flex';
         });
     } catch (error) {
         console.error('An error occurred:', error);
@@ -223,10 +235,10 @@ function sportsrankings() {
             this.removeEventListener('click', arguments.callee);
                 if (clickedSportsCount >= 10) {
                     flagImage.style.display = 'none';
-
+                    countryNameDisplay.textContent = null;
 
                     banner.textContent = `You Scored ${totalScore}!`;
-                    banner.style.display = 'block';
+                    banner.style.display = 'flex';
                     solutionBtn.style.display ='block';
                     solutionBtn.classList.add('clickable');
                     sportsListContainer.classList.add('complete')
@@ -264,7 +276,7 @@ solutionBtn.addEventListener('click', function() {
         .then(response => response.json())
         .then(data => {
             let smallestScore = data.minScore;
-            banner.textContent = `You Scored ${totalScore}! The smallest possible score was ${smallestScore}.`;
+            banner.innerHTML = `<div class="score">You Scored ${totalScore}!</div><div class="smallest-score">The smallest possible score was ${smallestScore}.</div>`;
         })
         .catch(error => console.error('An error occurred:', error));
 });
@@ -283,9 +295,9 @@ if (lastPlayed && lastPlayed.date === new Date().toDateString()) {
         .then(response => response.json())
         .then(data => {
             let smallestScore = data.minScore;
-            banner.textContent = `You Scored ${lastPlayed.score}! The smallest possible score was ${smallestScore}.`;
+            banner.innerHTML = `<div class="score">You Scored ${lastPlayed.score}!</div><div class="smallest-score">The smallest possible score was ${smallestScore}.</div>`;
         })
-    banner.style.display = 'block';
+    banner.style.display = 'flex';
 
     // Disable the game here
     generateBtn.style.display = 'none';
