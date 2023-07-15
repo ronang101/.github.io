@@ -55,9 +55,9 @@ countryNamesSwitch.addEventListener('change', function() {
 
     // If the switch is checked, show the country names, else hide them
   if (this.checked) {
-    countryNameDisplay.style.display = 'block';
-  } else {
     countryNameDisplay.style.display = 'none';
+  } else {
+    countryNameDisplay.style.display = 'block';
   }
 
 });
