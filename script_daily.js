@@ -75,11 +75,11 @@ setbtn.onclick = function() {
     setmodal.style.display = "block";
   }
 
-  let closeButton = document.querySelector('.close-button');
+let closeButton = document.querySelector('.close-button');
 closeButton.onclick = function() {
     setmodal.style.display = "none";
 }
-
+  
 // When the user clicks on <span> (x), close the modal
 for (let i = 0; i < spans.length; i++) {
     spans[i].onclick = function() {
@@ -252,7 +252,10 @@ function sportsrankings() {
                         date: new Date().toDateString(), // this will return the date in the format "Thu Jul 07 2023"
                         score: totalScore
                     }));
-                    
+                    let scores = JSON.parse(localStorage.getItem('pastScores')) || [];
+                    scores.push(totalScore);
+                    localStorage.setItem('pastScores', JSON.stringify(scores));
+                    renderHistogram(scores)
                 }
 
         })
@@ -311,3 +314,64 @@ if (lastPlayed && lastPlayed.date === new Date().toDateString()) {
     sportsListContainer.classList.remove('complete');
 }
 
+function renderHistogram(scores) {
+    console.log(`${scores}`)
+    // Get the histogram container
+
+    let ranges = [
+        { min: 0, max: 200, count: 0 },
+        { min: 201, max: 400, count: 0 },
+        { min: 401, max: 600, count: 0 },
+        { min: 601, max: 800, count: 0 },
+        { min: 801, max: Infinity, count: 0 }
+    ];
+    // Clear any previous bars
+    histogramContainer.innerHTML = '';
+    // For each score, create a bar and append it to the histogram
+    scores.forEach(score => {
+        for (let range of ranges) {
+            if (score >= range.min && score <= range.max) {
+                range.count++;
+                
+                break;
+            }
+        }
+    });
+    // For each range, create a bar based on its count and append it to the histogram
+    ranges.forEach(range => {
+        let bar = document.createElement('div');
+        bar.className = 'bar';
+        bar.style.width = `${(range.count/scores.length)*100}%`;  // Multiplied by 10 for better visual representation
+        
+        // Create a div for the range text
+        let rangeText = document.createElement('div');
+        rangeText.className = 'range-text';
+        if (range.min == 801) {
+            rangeText.textContent = '★☆☆☆☆';
+        } else if (range.min == 601) {
+            rangeText.textContent = '★★☆☆☆';
+        } else if (range.min == 401) {
+            rangeText.textContent = '★★★☆☆';
+        } else if (range.min == 201) {
+            rangeText.textContent = '★★★★☆';
+        } else {
+            rangeText.textContent = '★★★★★';
+        }
+        bar.appendChild(rangeText);
+
+        // Create a div for the count within the range
+        let countText = document.createElement('div');
+        countText.className = 'count-text';
+        countText.textContent = range.count;
+        bar.appendChild(countText);
+        histogramContainer.appendChild(bar);
+    });
+    Hist_Modal.style.display = "block"
+
+}
+const histogramContainer = document.getElementById('histogram');
+const Hist_Modal = document.getElementById('Hist_Modal');
+const closeButton_hist = document.querySelector('.close-button-hist');
+closeButton_hist.onclick = function() {
+    Hist_Modal.style.display = "none";
+}

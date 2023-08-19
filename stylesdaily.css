@@ -515,3 +515,95 @@ input:checked + .slider:before {
     text-decoration: none;
     cursor: pointer;
 }
+
+#Hist_Modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#hist-modal-content {
+  position: relative;
+  background-color: #222;
+  top: 25%;
+  margin: auto; /* Centers the modal */
+  padding: 0rem;
+  box-sizing: border-box;
+  width: 80%; /* Take 80% of the width of the screen */
+  height: 50%; /* Take 50% of the height of the screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border-radius: 1rem;
+}
+
+#hist-modal-content h2 {
+  position: relative;
+  top: -0.5rem;
+  text-align: center;
+  width: 90%;
+}
+
+/* Histogram Bars */
+#histogram {
+  position: relative;
+  top: 25%;
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 50%;
+  width: 70%;
+}
+
+#histogram .bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 17.5%;
+  background-color: #efbe53; /* Green color for bars */
+  border-radius: 0px 5px 5px 0; /* Rounded corners on the top */
+  transition: height 0.3s ease; /* Smooth transition for height changes */
+}
+
+
+
+.range-text, .count-text {
+  font-weight: bold;
+  position: absolute;
+  width: auto;
+  text-align: center;
+  font-size: 12px; /* Adjust as needed */
+}
+
+.range-text {
+  left: -55px;  /* Adjust as needed */
+}
+
+.count-text {
+  left: 20px;  /* Adjust as needed */
+}
+
+
+.close-button-hist {
+  position: absolute;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+.close-button-hist:hover,
+.close-button-hist:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
