@@ -347,7 +347,7 @@ function renderHistogram(scores) {
         let rangeText = document.createElement('div');
         rangeText.className = 'range-text';
         if (range.min == 801) {
-            rangeText.textContent = '★☆☆☆☆';
+            rangeText.textContent = '★';
         } else if (range.min == 601) {
             rangeText.textContent = '★★☆☆☆';
         } else if (range.min == 401) {
