@@ -31,6 +31,19 @@ let dailycountriesList =[]
 let randomizer = 1
 
 
+const twohundh3 = document.getElementById('twohund');
+const minscoreh3 = document.getElementById('minscore');
+const dailystreak = document.getElementById('dailystreak');
+const histogramContainer = document.getElementById('histogram');
+const Hist_Modal = document.getElementById('Hist_Modal');
+const closeButton_hist = document.querySelector('.close-button-hist');
+closeButton_hist.onclick = function() {
+    console.log("Clicked")
+    Hist_Modal.style.display = "none";
+}
+console.log("Close button:", closeButton_hist);
+console.log("Modal:", Hist_Modal);
+
 
 // We first get the current date and time.
 const now = new Date();
@@ -247,15 +260,41 @@ function sportsrankings() {
                     // Here we are setting an item in the localStorage with the key 'lastPlayed'.
                     // The value of this item is a stringified JSON object which contains the date when the user played the game and their score.
                     // new Date().toDateString() generates a string representation of the current date in the format "Thu Jul 07 2023".
-
+                    let currentDate = new Date().toDateString()
+                    let yesterdayDate = new Date();
+                    yesterdayDate.setDate(yesterdayDate.getDate() - 1)
+                    yesterdayDate = yesterdayDate.toDateString()
                     localStorage.setItem('lastPlayed', JSON.stringify({
                         date: new Date().toDateString(), // this will return the date in the format "Thu Jul 07 2023"
                         score: totalScore
                     }));
+                    let MinScore;
+
+                    fetch('https://daily.ronangeraghty.repl.co/api/scores')
+                        .then(response => response.json())
+                        .then(data => {
+                            MinScore = parseInt(data.minScore);
+                        })
+                    let stats = JSON.parse(localStorage.getItem('stats')) || [0,0,0,0]
+                    if (totalScore < 200){
+                        stats[0] += 1
+                    }
+                    if (totalScore == MinScore){
+                        stats[1] += 1
+                    }
+                    if (stats[3] == yesterdayDate){
+                        stats[3] = currentDate
+                        stats[2] +=1
+                    }
+                    else {
+                        stats[3] = currentDate
+                        stats[2] =1
+                    }
+                    localStorage.setItem('stats', JSON.stringify(stats));
                     let scores = JSON.parse(localStorage.getItem('pastScores')) || [];
                     scores.push(totalScore);
                     localStorage.setItem('pastScores', JSON.stringify(scores));
-                    renderHistogram(scores)
+                    renderHistogram(scores, stats)
                 }
 
         })
@@ -314,7 +353,7 @@ if (lastPlayed && lastPlayed.date === new Date().toDateString()) {
     sportsListContainer.classList.remove('complete');
 }
 
-function renderHistogram(scores) {
+function renderHistogram(scores, stats) {
     console.log(`${scores}`)
     // Get the histogram container
 
@@ -341,7 +380,7 @@ function renderHistogram(scores) {
     ranges.forEach(range => {
         let bar = document.createElement('div');
         bar.className = 'bar';
-        bar.style.width = `${(range.count/scores.length)*100}%`;  // Multiplied by 10 for better visual representation
+        bar.style.width = `${10 + (range.count/scores.length)*90}%`;  // Multiplied by 10 for better visual representation
         
         // Create a div for the range text
         let rangeText = document.createElement('div');
@@ -365,13 +404,20 @@ function renderHistogram(scores) {
         countText.textContent = range.count;
         bar.appendChild(countText);
         histogramContainer.appendChild(bar);
+
     });
+    let twohundtext = document.createElement('div');
+    let minscoretext = document.createElement('div');
+    let dailystreaktext = document.createElement('div');
+    twohundtext.className = 'stats-text';
+    minscoretext.className = 'stats-text';
+    dailystreaktext.className = 'stats-text';
+    twohundtext.textContent = `${stats[0]}`;
+    minscoretext.textContent = `${stats[1]}`;
+    dailystreaktext.textContent = `${stats[2]}`;
+    twohundh3.appendChild(twohundtext)
+    minscoreh3.appendChild(minscoretext)
+    dailystreak.appendChild(dailystreaktext)
     Hist_Modal.style.display = "block"
 
-}
-const histogramContainer = document.getElementById('histogram');
-const Hist_Modal = document.getElementById('Hist_Modal');
-const closeButton_hist = document.querySelector('.close-button-hist');
-closeButton_hist.onclick = function() {
-    Hist_Modal.style.display = "none";
 }

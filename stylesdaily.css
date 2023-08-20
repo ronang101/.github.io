@@ -532,12 +532,12 @@ input:checked + .slider:before {
 #hist-modal-content {
   position: relative;
   background-color: #222;
-  top: 25%;
+  top: 30%;
   margin: auto; /* Centers the modal */
   padding: 0rem;
   box-sizing: border-box;
-  width: 80%; /* Take 80% of the width of the screen */
-  height: 50%; /* Take 50% of the height of the screen */
+  width: 100%; /* Take 80% of the width of the screen */
+  height: 70%; /* Take 50% of the height of the screen */
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -546,32 +546,58 @@ input:checked + .slider:before {
 }
 
 #hist-modal-content h2 {
+  font-weight: bold;
+  color: #efbe53;
   position: relative;
-  top: -0.5rem;
+  top: -1rem;
   text-align: center;
-  width: 90%;
+  width: 80%;
 }
 
+#Stats {
+  top: -10px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+
+}
+
+#Stats h3{
+  color: #efbe53;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  font-size: 15px;
+}
+
+#Stats h3 .stats-text{
+  font-size: 40px;
+
+  margin-top: 20px;
+
+}
 /* Histogram Bars */
 #histogram {
-  position: relative;
-  top: 25%;
+  position: absolute;
+  bottom: 10px;
   left: 10%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 50%;
+  height: 60%;
   width: 70%;
 }
 
 #histogram .bar {
+  left: 20%;
   position: relative;
   display: flex;
   align-items: center;
-  height: 17.5%;
+  height: 10%;
   background-color: #efbe53; /* Green color for bars */
-  border-radius: 0px 5px 5px 0; /* Rounded corners on the top */
-  transition: height 0.3s ease; /* Smooth transition for height changes */
+  transition: width 0.3s ease; /* Smooth transition for height changes */
 }
 
 
@@ -581,15 +607,17 @@ input:checked + .slider:before {
   position: absolute;
   width: auto;
   text-align: center;
-  font-size: 12px; /* Adjust as needed */
+  font-size: 14px; /* Adjust as needed */
 }
 
 .range-text {
-  left: -60px;  /* Adjust as needed */
+  color: #efbe53;
+  left: -70px;  /* Adjust as needed */
 }
 
 .count-text {
-  left: 20px;  /* Adjust as needed */
+  color:#222;
+  left: calc(50% - 4px);  /* Adjust as needed */
 }
 
 
@@ -598,7 +626,7 @@ input:checked + .slider:before {
   right: 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #fff;
+  color: #efbe53;
 }
 .close-button-hist:hover,
 .close-button-hist:focus {
