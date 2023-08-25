@@ -102,6 +102,7 @@ for (let i = 0; i < spans.length; i++) {
 }
 
 // When the user clicks anywhere outside of the modal, close it
+//FIX THIS I THINK THE PROBLEM IS THAT THE MODEL TAKES THE WHOLE SCREEN
 window.onclick = function(event) {
     if (event.target == termsModal) {
         termsModal.style.display = "none";
