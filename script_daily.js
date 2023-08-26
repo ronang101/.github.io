@@ -297,6 +297,7 @@ function sportsrankings() {
                             scores.push(totalScore);
                             localStorage.setItem('pastScores', JSON.stringify(scores));
                             renderHistogram(scores, stats)
+                            ShareBtn.addEventListener('click', Sharebutton(scores))
                         })
 
                 }
@@ -440,36 +441,34 @@ function renderHistogram(scores, stats) {
 
 
 
-let stats = JSON.parse(localStorage.getItem('stats')) || [0,0,0,0]
-let scores = JSON.parse(localStorage.getItem('pastScores')) || [];
-renderHistogram(scores, stats)
 
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+function Sharebutton(scores) {
+    return function(){
+            let scoretext;
+        if (scores[scores.length-1] <= 200) {
+            scoretext = '★★★★★';
+        } else if (scores[scores.length-1] <= 400) {
+            scoretext = '★★★★☆';
+        } else if (scores[scores.length-1] <= 600) {
+            scoretext = '★★★☆☆';
+        } else if (scores[scores.length-1] <= 800) {
+            scoretext = '★★☆☆☆';
+        } else {
+            scoretext = '★☆☆☆☆';
+        }
+        const shareData = {
+            title: 'Flagogories:',
+            text: scoretext,
+            url: 'http://flagogories.com/Daily.html',
+        };
+        if (navigator.share && isMobile) {
+            // Mobile sharing
+            navigator.share(shareData)
+        } else {
+            // Desktop clipboard copy
+            const textToCopy = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
+            navigator.clipboard.writeText(textToCopy);
+        }}
+};
 
-ShareBtn.addEventListener('click', () => { 
-        let scoretext;
-    if (scores[scores.length-1] <= 200) {
-        scoretext = '★★★★★';
-    } else if (scores[scores.length-1] <= 400) {
-        scoretext = '★★★★☆';
-    } else if (scores[scores.length-1] <= 600) {
-        scoretext = '★★★☆☆';
-    } else if (scores[scores.length-1] <= 800) {
-        scoretext = '★★☆☆☆';
-    } else {
-        scoretext = '★☆☆☆☆';
-    }
-    const shareData = {
-        title: 'Flagogories:',
-        text: scoretext,
-        url: 'http://flagogories.com/Daily.html',
-      };
-    if (navigator.share && isMobile) {
-        // Mobile sharing
-        navigator.share(shareData)
-    } else {
-        // Desktop clipboard copy
-        const textToCopy = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
-        navigator.clipboard.writeText(textToCopy);
-    }
-});
