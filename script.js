@@ -235,6 +235,7 @@ function* getAllPermutations(list) {
 
 
 
+let minpermmap = {};
 function calculateSmallestScore() {
     // Get the list of all countries.
     const countries = Object.keys(selectedCountriesAndRankings);
@@ -244,9 +245,8 @@ function calculateSmallestScore() {
 
     // Get all permutations of the list of sports.
     const sportPermutations = getAllPermutations(sports);
-
+    let minPermutation = null;
     let minScore = Infinity;  // Initialize the minimum score to infinity.
-    let minPermutation = null;  // Initialize the permutation which gives the minimum score to null.
 
     // For each permutation of sports, calculate the score when each country is assigned the corresponding sport in the permutation.
     // If the score is less than the current minimum score, update the minimum score and the corresponding permutation.
@@ -265,6 +265,11 @@ function calculateSmallestScore() {
             minScore = score;
             minPermutation = perm;
         }
+    }
+    
+
+    for (let i = 0; i < minPermutation.length; i++) {
+        minpermmap[minPermutation[i]] = countries[i];
     }
 
     // Print the permutation which gives the minimum score and the minimum score itself.
@@ -372,8 +377,10 @@ function FindSol()  {
     solutionBtn.classList.remove('clickable');
     this.removeEventListener('click', arguments.callee);
     let smallestScore = calculateSmallestScore()
-
     banner.innerHTML = `<div class="score">You Scored ${totalScore}!</div><div class="smallest-score">The smallest possible score was ${smallestScore}.</div>`;
+    sportsList.forEach((sportElement) => {
+        sportElement.textContent = `${sportElement.dataset.sport} - ${minpermmap[sportElement.dataset.sport]}`;})
+
 }
 
 solutionBtn.addEventListener('click', FindSol)

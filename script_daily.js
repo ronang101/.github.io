@@ -3,6 +3,7 @@ const generateBtn = document.getElementById('generateBtn');
 const sportsListContainer = document.getElementById('sports');
 const flagImage = document.getElementById('flag');
 const solutionBtn = document.getElementById('solutionBtn');
+const ShareBtn = document.getElementById('ShareBtn');
 const banner = document.getElementById('scoreBanner');
 const sportsList = document.querySelectorAll('.sport');
 // Get all elements with class="dropbtn"
@@ -270,32 +271,34 @@ function sportsrankings() {
                         score: totalScore
                     }));
                     let MinScore;
-
+                    let stats = JSON.parse(localStorage.getItem('stats')) || [0,0,0,0]
                     fetch('https://daily.ronangeraghty.repl.co/api/scores')
                         .then(response => response.json())
                         .then(data => {
                             MinScore = parseInt(data.minScore);
+                            console.log(`${MinScore}${totalScore}`)
+                            if (totalScore < 200){
+                                stats[0] += 1
+                            }
+                            if (totalScore == MinScore){
+                                stats[1] += 1
+                            }
+                            if (stats[3] == yesterdayDate){
+                                stats[3] = currentDate
+                                stats[2] +=1
+                            }
+                            else {
+                                stats[3] = currentDate
+                                stats[2] =1
+                            }
+                            console.log(`${stats}`)
+                            localStorage.setItem('stats', JSON.stringify(stats));
+                            let scores = JSON.parse(localStorage.getItem('pastScores')) || [];
+                            scores.push(totalScore);
+                            localStorage.setItem('pastScores', JSON.stringify(scores));
+                            renderHistogram(scores, stats)
                         })
-                    let stats = JSON.parse(localStorage.getItem('stats')) || [0,0,0,0]
-                    if (totalScore < 200){
-                        stats[0] += 1
-                    }
-                    if (totalScore == MinScore){
-                        stats[1] += 1
-                    }
-                    if (stats[3] == yesterdayDate){
-                        stats[3] = currentDate
-                        stats[2] +=1
-                    }
-                    else {
-                        stats[3] = currentDate
-                        stats[2] =1
-                    }
-                    localStorage.setItem('stats', JSON.stringify(stats));
-                    let scores = JSON.parse(localStorage.getItem('pastScores')) || [];
-                    scores.push(totalScore);
-                    localStorage.setItem('pastScores', JSON.stringify(scores));
-                    renderHistogram(scores, stats)
+
                 }
 
         })
@@ -320,8 +323,11 @@ solutionBtn.addEventListener('click', function() {
         .then(data => {
             let smallestScore = data.minScore;
             banner.innerHTML = `<div class="score">You Scored ${totalScore}!</div><div class="smallest-score">The smallest possible score was ${smallestScore}.</div>`;
+            sportsList.forEach((sportElement) => {
+                sportElement.textContent = `${sportElement.dataset.sport} - ${data.Optimal[sportElement.dataset.sport]}`;})
         })
         .catch(error => console.error('An error occurred:', error));
+    solutionBtn.style.display = 'none'
 });
 
 
@@ -377,11 +383,12 @@ function renderHistogram(scores, stats) {
             }
         }
     });
+
     // For each range, create a bar based on its count and append it to the histogram
     ranges.forEach(range => {
         let bar = document.createElement('div');
+        bar.style.width = '10%'
         bar.className = 'bar';
-        bar.style.width = `${10 + (range.count/scores.length)*90}%`;  // Multiplied by 10 for better visual representation
         
         // Create a div for the range text
         let rangeText = document.createElement('div');
@@ -420,5 +427,49 @@ function renderHistogram(scores, stats) {
     minscoreh3.appendChild(minscoretext)
     dailystreak.appendChild(dailystreaktext)
     Hist_Modal.style.display = "block"
+    histogramContainer.offsetHeight;
+    ranges.forEach((range, index) => {
+        const bar = histogramContainer.children[index];
+        bar.style.width = `${10 + (range.count / scores.length) * 90}%`;
+    });
 
 }
+
+
+
+
+
+
+let stats = JSON.parse(localStorage.getItem('stats')) || [0,0,0,0]
+let scores = JSON.parse(localStorage.getItem('pastScores')) || [];
+renderHistogram(scores, stats)
+
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+ShareBtn.addEventListener('click', () => { 
+        let scoretext;
+    if (scores[scores.length-1] <= 200) {
+        scoretext = '★★★★★';
+    } else if (scores[scores.length-1] <= 400) {
+        scoretext = '★★★★☆';
+    } else if (scores[scores.length-1] <= 600) {
+        scoretext = '★★★☆☆';
+    } else if (scores[scores.length-1] <= 800) {
+        scoretext = '★★☆☆☆';
+    } else {
+        scoretext = '★☆☆☆☆';
+    }
+    const shareData = {
+        title: 'Flagogories:',
+        text: scoretext,
+        url: 'http://flagogories.com/Daily.html',
+      };
+    if (navigator.share && isMobile) {
+        // Mobile sharing
+        navigator.share(shareData)
+    } else {
+        // Desktop clipboard copy
+        const textToCopy = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
+        navigator.clipboard.writeText(textToCopy);
+    }
+});

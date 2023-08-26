@@ -200,6 +200,7 @@ li.active {
 
 
 
+
 /* CSS rule for the HTML element with id 'flag' */
 #flag {
   position: absolute;
@@ -555,7 +556,7 @@ input:checked + .slider:before {
 }
 
 #Stats {
-  top: -10px;
+  top: -35px;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -580,13 +581,14 @@ input:checked + .slider:before {
 }
 /* Histogram Bars */
 #histogram {
-  position: absolute;
+  flex-grow: 1;
+  position: relative;
   bottom: 10px;
-  left: 10%;
+  margin-left: -40px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 60%;
+  height: 100%;
   width: 70%;
 }
 
@@ -597,7 +599,7 @@ input:checked + .slider:before {
   align-items: center;
   height: 10%;
   background-color: #efbe53; /* Green color for bars */
-  transition: width 0.3s ease; /* Smooth transition for height changes */
+  transition: width 1s ease; /* Smooth transition for height changes */
 }
 
 
@@ -635,3 +637,25 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
+#ShareBtn:hover{
+  cursor: pointer;
+}
+#ShareBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: -40px;
+  position: relative;
+  height: 40px;
+  width: 140px;
+  border-radius: 20px;
+  background-color: #efbe53;
+  border: 0px;
+  color: black;
+  font-weight: 700;
+  font-size: 18px;
+}
+#ShareBtn svg{
+  margin-left:10px;
+}
