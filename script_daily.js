@@ -383,9 +383,15 @@ function renderHistogram(scores, stats) {
     ];
     // Clear any previous bars
     histogramContainer.innerHTML = '';
-    twohundh3.innerHTML = '';
-    minscoreh3.innerHTML = '';
-    dailystreak.innerHTML = '';
+    if (twohundh3.lastChild.className === 'stats-text') {
+        twohundh3.removeChild(twohundh3.lastChild);
+    }
+    if (minscoreh3.lastChild.className === 'stats-text') {
+        minscoreh3.removeChild(minscoreh3.lastChild);
+    }
+    if (dailystreak.lastChild.className === 'stats-text') {
+        dailystreak.removeChild(dailystreak.lastChild);
+    }
     // For each score, create a bar and append it to the histogram
     scores.forEach(score => {
         for (let range of ranges) {
