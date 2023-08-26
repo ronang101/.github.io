@@ -383,6 +383,9 @@ function renderHistogram(scores, stats) {
     ];
     // Clear any previous bars
     histogramContainer.innerHTML = '';
+    twohundh3.innerHTML = '';
+    minscoreh3.innerHTML = '';
+    dailystreak.innerHTML = '';
     // For each score, create a bar and append it to the histogram
     scores.forEach(score => {
         for (let range of ranges) {
