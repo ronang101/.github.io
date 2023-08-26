@@ -6,18 +6,20 @@ const solutionBtn = document.getElementById('solutionBtn');
 const ShareBtn = document.getElementById('ShareBtn');
 const banner = document.getElementById('scoreBanner');
 const sportsList = document.querySelectorAll('.sport');
+const viewstats = document.getElementById('viewstats');
 // Get all elements with class="dropbtn"
 var dropdowns = document.getElementsByClassName("dropbtn");
 // Get the modals
 var termsModal = document.getElementById("termsModal");
 var privacyModal = document.getElementById("privacyModal");
+var InstructionsModal = document.getElementById("InstructionsModal")
 var setmodal = document.getElementById("settingsModal");
 var setmodalcontent = document.getElementById("set-modal-content");
 // Get the buttons that open the modals
 var termsBtn = document.getElementById("termsBtn");
 var privacyBtn = document.getElementById("privacyBtn");
 var setbtn = document.getElementById("settingsBtn");
-
+var Show_Instructions = document.getElementById("Show_Instructions");
 // Get the <span> elements that close the modals
 var spans = document.getElementsByClassName("close");
 const availableCountries = ['Ireland',   'France',   'New Zealand',  'South Africa', 'Scotland', 'England',  'Australia',    'Argentina',    'Wales',    'Japan',    'Georgia',  'Samoa',    'Fiji', 'Italy',    'Tonga',    'Portugal', 'Uruguay',  'United States',    'Romania',  'Spain',    'Namibia',  'Chile',    'Canada',   'Hong Kong',    'russia',   'Netherlands',  'Switzerland',  'Brazil',   'Belgium',  'South Korea',  'Zimbabwe', 'Germany',  'Kenya',    'Poland',   'Czechia',  'Ukraine',  'Colombia', 'Tunisia',  'Sweden',   'Paraguay', 'Philippines',  'Croatia',  'Uganda',   'Madagascar',   'Malta',    'Sri Lanka',    'Morocco',  'Ivory Coast',  'Mexico',   'Trinidad and Tobago',  'Lithuania',    'Malaysia', 'Cook Islands', 'Cayman Islands',   'Singapore',    'Senegal',  'Moldova',  'Guyana',   'Bulgaria', 'Latvia',   'Israel',   'United Arab Emirates', 'Kazakhstan',   'Luxembourg',   'Taiwan',   'Jamaica',  'Bermuda',  'Zambia',   'Nigeria',  'Hungary',  'Serbia',   'Finland',  'Denmark',  'Guam', 'Peru', 'Algeria',  'Botswana', 'Venezuela',    'Thailand', 'Slovenia', 'Saint Vincent and the Grenadines', 'China',    'Barbados', 'Papua New Guinea', 'Ghana',    'India',    'Austria',  'Andorra',  'Uzbekistan',   'Burkina Faso', 'Pakistan', 'Mauritius',    'Bosnia and Herzegovina',   'laos', 'Iran', 'Rwanda',   'Costa Rica',   'Niue', 'Bahamas',  'Burundi',  'Eswatini', 'Norway',   'Solomon Islands',  'Cameroon', 'Indonesia',    'Monaco',   'Greece',   'Vanuatu',  'American Samoa'];
@@ -88,10 +90,17 @@ privacyBtn.onclick = function() {
 setbtn.onclick = function() {
     setmodal.style.display = "block";
   }
+Show_Instructions.onclick = function() {
+    InstructionsModal.style.display = "block";
+}
 
 let closeButton = document.querySelector('.close-button');
 closeButton.onclick = function() {
     setmodal.style.display = "none";
+}
+let instructionButton = document.querySelector('.close-instructions');
+instructionButton.onclick = function() {
+    InstructionsModal.style.display = "none";
 }
   
 // When the user clicks on <span> (x), close the modal
@@ -446,7 +455,10 @@ const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/
 function Sharebutton(scores) {
     return function(){
             let scoretext;
-        if (scores[scores.length-1] <= 200) {
+        if (scores.length == 0){
+            scoretext = 'X'
+        }
+        else if (scores[scores.length-1] <= 200) {
             scoretext = '★★★★★';
         } else if (scores[scores.length-1] <= 400) {
             scoretext = '★★★★☆';
@@ -458,8 +470,8 @@ function Sharebutton(scores) {
             scoretext = '★☆☆☆☆';
         }
         const shareData = {
-            title: 'Flagogories:',
-            text: scoretext,
+            title: '',
+            text: 'Flagogories:\n' + scoretext,
             url: 'http://flagogories.com/Daily.html',
         };
         if (navigator.share && isMobile) {
@@ -472,3 +484,10 @@ function Sharebutton(scores) {
         }}
 };
 
+viewstats.onclick = function() {
+    let stats = JSON.parse(localStorage.getItem('stats'))
+    let scores = JSON.parse(localStorage.getItem('pastScores')) || [];
+    renderHistogram(scores, stats)
+    ShareBtn.addEventListener('click', Sharebutton(scores))
+
+}

@@ -17,10 +17,12 @@ var dropdowns = document.getElementsByClassName("dropbtn");
 var termsModal = document.getElementById("termsModal");
 var privacyModal = document.getElementById("privacyModal");
 var setmodal = document.getElementById("settingsModal");
+var InstructionsModal = document.getElementById("InstructionsModal")
 var setmodalcontent = document.getElementById("set-modal-content");
 // Get the buttons that open the modals
 var termsBtn = document.getElementById("termsBtn");
 var privacyBtn = document.getElementById("privacyBtn");
+var Show_Instructions = document.getElementById("Show_Instructions");
 var setbtn = document.getElementById("settingsBtn");
 
 // Get the <span> elements that close the modals
@@ -63,6 +65,9 @@ privacyBtn.onclick = function() {
     privacyModal.style.display = "block";
 }
 
+Show_Instructions.onclick = function() {
+    InstructionsModal.style.display = "block";
+}
 setbtn.onclick = function() {
     setmodal.style.display = "block";
   }
@@ -78,7 +83,10 @@ let closeButton = document.querySelector('.close-button');
 closeButton.onclick = function() {
     setmodal.style.display = "none";
 }
-
+let instructionButton = document.querySelector('.close-instructions');
+instructionButton.onclick = function() {
+    InstructionsModal.style.display = "none";
+}
 
 
 // Loop through the dropdown buttons to toggle between hiding and showing its dropdown content
@@ -218,70 +226,6 @@ replayBtn.addEventListener('click', function() {
     })
 })
 
-function* getAllPermutations(list) {
-    if (list.length === 1) {
-        yield list;
-    } else {
-        for (let i = 0; i < list.length; i++) {
-            const currentElement = list[i];
-            const remainingList = list.slice(0, i).concat(list.slice(i + 1));
-            for (let perm of getAllPermutations(remainingList)) {
-                yield [currentElement].concat(perm);
-            }
-        }
-    }
-}
-
-
-
-
-let minpermmap = {};
-function calculateSmallestScore() {
-    // Get the list of all countries.
-    const countries = Object.keys(selectedCountriesAndRankings);
-
-    // Get the list of all sports for the first country (assuming that the same list of sports applies to all countries).
-    const sports = countries.length > 0 ? Object.keys(selectedCountriesAndRankings[countries[0]]) : [];
-
-    // Get all permutations of the list of sports.
-    const sportPermutations = getAllPermutations(sports);
-    let minPermutation = null;
-    let minScore = Infinity;  // Initialize the minimum score to infinity.
-
-    // For each permutation of sports, calculate the score when each country is assigned the corresponding sport in the permutation.
-    // If the score is less than the current minimum score, update the minimum score and the corresponding permutation.
-    for (let perm of sportPermutations) {
-        let score = 0;  // Initialize the score for this permutation to 0.
-
-        // For each country, add to the score the ranking of the country in the sport corresponding to the country's position in the permutation.
-        for (let i = 0; i < countries.length; i++) {
-            const country = countries[i];  // The current country.
-            const sport = perm[i];  // The sport assigned to this country in the current permutation.
-            score += selectedCountriesAndRankings[country][sport];  // Add the ranking of the country in this sport to the score.
-        }
-
-        // If the score for this permutation is less than the current minimum score, update the minimum score and the corresponding permutation.
-        if (score < minScore) {
-            minScore = score;
-            minPermutation = perm;
-        }
-    }
-    
-
-    for (let i = 0; i < minPermutation.length; i++) {
-        minpermmap[minPermutation[i]] = countries[i];
-    }
-
-    // Print the permutation which gives the minimum score and the minimum score itself.
-
-    // Return the minimum score.
-    return minScore;
-}
-
-
-
-
-    
 function sportsrankings() {
         // Increase the counter when a sport is clicked.The ++ means increase the value by 1
         clickedSportsCount++;
@@ -373,14 +317,21 @@ sportsList.forEach((sportElement) => {
     // The event that we're listening for is 'click'.
     sportElement.addEventListener('click', sportsrankings);
 })
-function FindSol()  {
+const worker = new Worker('worker.js')
+async function FindSol()  {
     solutionBtn.classList.remove('clickable');
     this.removeEventListener('click', arguments.callee);
-    let smallestScore = calculateSmallestScore()
-    banner.innerHTML = `<div class="score">You Scored ${totalScore}!</div><div class="smallest-score">The smallest possible score was ${smallestScore}.</div>`;
-    sportsList.forEach((sportElement) => {
-        sportElement.textContent = `${sportElement.dataset.sport} - ${minpermmap[sportElement.dataset.sport]}`;})
-
+    document.querySelector(".wrapper").style.display = "block";
+    worker.postMessage({ selectedCountriesAndRankings });
+    banner.style.display = 'none'
+    worker.onmessage = function(event){
+        const smallestScore = event.data.minScore
+        const minpermmap = event.data.minpermmap
+        banner.style.display = 'block'
+        banner.innerHTML = `<div class="score">You Scored ${totalScore}!</div><div class="smallest-score">The smallest possible score was ${smallestScore}.</div>`;
+        sportsList.forEach((sportElement) => {
+            sportElement.textContent = `${sportElement.dataset.sport} - ${minpermmap[sportElement.dataset.sport]}`;})
+        document.querySelector(".wrapper").style.display = "none";}
 }
 
 solutionBtn.addEventListener('click', FindSol)
