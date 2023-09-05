@@ -580,12 +580,14 @@ input:checked + .slider:before {
   
   .circle {
     width: 20px;
-    height: 20px;
+    height: 5px;
+    top: 60px;
     position: absolute;
-    border-radius: 50%;
+    border-radius: 50px 50px 25px 25px;
     background-color: #efbe53;
     left: 15%;
     transform-origin: 50%;
+    transform: scaleX(1.7);
     animation: circle7124 .5s alternate infinite ease;
   }
   
@@ -620,6 +622,8 @@ input:checked + .slider:before {
   }
   
   .shadow {
+    transform: scaleX(1.5);
+    opacity: 1;
     width: 20px;
     height: 4px;
     border-radius: 50%;
