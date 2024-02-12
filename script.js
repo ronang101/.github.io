@@ -169,7 +169,7 @@ function generateCountry() {
 
             sportsList.forEach(sportElement => {
                 const sport = sportElement.dataset.sport;
-                fetch(`https://random-countries--ronangeraghty.repl.co/ranking/${currentCountry}/${sport}`)
+                fetch(`https://random-countries-ronangeraghty.replit.app/ranking/${currentCountry}/${sport}`)
                     .then(response => response.json())
                     .then(data => {
                         
@@ -244,7 +244,7 @@ function sportsrankings() {
 
         // This line sends a request to the Flask application's '/ranking/<country>/<sport>' endpoint. 
         // The 'fetch' function returns a Promise that resolves to the Response to that request, whether it is successful or not.
-        fetch(`https://random-countries--ronangeraghty.repl.co/ranking/${currentCountry}/${sport}`)
+        fetch(`https://random-countries-ronangeraghty.replit.app/ranking/${currentCountry}/${sport}`)
 
         // The 'then' method returns a Promise. It takes up to two arguments: callback functions for the success and failure cases of the Promise.
         .then(response => {
