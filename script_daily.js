@@ -199,7 +199,7 @@ function getDailyCountry() {
 
 generateBtn.addEventListener('click', async function() {
     try {
-        const response = await fetch('https://https://daily-ronangeraghty.replit.app/api/countries');
+        const response = await fetch('https://daily-ronangeraghty.replit.app/api/countries');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -281,7 +281,7 @@ function sportsrankings() {
                     }));
                     let MinScore;
                     let stats = JSON.parse(localStorage.getItem('stats')) || [0,0,0,0]
-                    fetch('https://https://daily-ronangeraghty.replit.app/api/scores')
+                    fetch('https://daily-ronangeraghty.replit.app/api/scores')
                         .then(response => response.json())
                         .then(data => {
                             MinScore = parseInt(data.minScore);
@@ -328,7 +328,7 @@ sportsList.forEach((sportElement) => {
 solutionBtn.addEventListener('click', function() {
     this.removeEventListener('click', arguments.callee);
     solutionBtn.classList.remove('clickable');
-    fetch('https://https://daily-ronangeraghty.replit.app/api/scores')
+    fetch('https://daily-ronangeraghty.replit.app/api/scores')
         .then(response => response.json())
         .then(data => {
             let smallestScore = data.minScore;
@@ -350,7 +350,7 @@ if (lastPlayed && lastPlayed.date === new Date().toDateString()) {
     // If this condition is true, then the user has already played the game today. 
     // We show their previous score and disable the game.
     // User has already played today. Show the score from the last game and disable the game.
-    fetch('https://https://daily-ronangeraghty.replit.app/api/scores')
+    fetch('https://daily-ronangeraghty.replit.app/api/scores')
         .then(response => response.json())
         .then(data => {
             let smallestScore = data.minScore;
