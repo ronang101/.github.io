@@ -1,19 +1,16 @@
-<!-- This line is a document type declaration and it tells the browser that this document is an HTML5 document. -->
+
 <!DOCTYPE html>
 <html>
-<!-- The head element is a container for metadata (data about data) and is placed between the <html> tag and the <body> tag. -->
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The title element is required in all HTML documents and it defines the title of the document, which is shown in the browser's title bar or in the page's tab. -->
+    
     <title>Random Flag Generator</title>
-    <!-- The link tag here is used to link an external CSS file. -->
-    <!-- The href attribute specifies the path to the CSS file. -->
-    <!-- The rel attribute defines the relationship between the HTML and the linked file. -->
+    
+    
+    
     <link rel="stylesheet" href="styles.css">
-    <!-- A navigation bar is created by using a 'nav' HTML element.
-    Within the 'nav' element, an unordered list (ul) is created for the navigation items.
-    Each list item (li) represents a navigation item.
-    Inside each 'li', there is a hyperlink (a) that links to a different page. -->
+
     <nav class="navbar">
         <ul class="dropdownlist">
             <li class="dropdown">
@@ -30,15 +27,15 @@
             <img src="Logo.png" alt="Logo" class="logo">
         </div>
         <div class="settings-container">
-            <a href="#" id="settingsBtn"><i class="fas fa-cog"></i></a>  <!-- Unicode for cog -->
+            <a href="#" id="settingsBtn"><i class="fas fa-cog"></i></a>  
         </div>
         
     </nav>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 </head>
-<!-- The body element contains the content of the document, such as text, images, hyperlinks, tables, lists, etc. -->
+
 <body>
-    <!-- Modal content for Terms of Service -->
+    
     <div id="termsModal" class="modal">
         <div class="modal-content">
             <div class="modal-content-wrapper">
@@ -68,7 +65,7 @@
     </div>
     
 
-<!-- Modal content for Privacy Statement -->
+
 <div id="privacyModal" class="modal">
     <div class="modal-content">
         <div class="modal-content-wrapper">
@@ -96,10 +93,10 @@
 
 
 
-    <!-- This line creates a button with the text "Generate". The 'id' attribute is used to specify a unique id for the HTML element. This id can be used in a JavaScript file to access and manipulate the element with the specific id. -->
+    
     <button id="generateBtn">GENERATE</button>
     <div id="countryName" class="country-name" style="display: block;"></div>
-    <!-- This line creates an image element. The 'src' attribute specifies the source URL of the image. In this case, the source URL is initially empty. -->
+    
     <img id="flag" src="" alt="flag" />
     <div class="wrapper">
         <div class="circle"></div>
@@ -110,11 +107,8 @@
         <div class="shadow"></div>
     </div>
     
-    <!-- "ul" is an HTML tag that defines an unordered (bulleted) list. It should be paired with "li" tags, which define list items. -->
-        
-    <!-- The banner is initially hidden (with 'display: none') and centered on the screen.
-    When all sports have been clicked, JavaScript will update the 'score' span with the total score
-    and make the banner visible (by changing 'display' to 'block'). -->
+    
+
     <div id="scoreBanner">
         You Scored <span id="score">0</span>!
     </div>
@@ -123,8 +117,7 @@
     <button id="replayBtn" style="display: none;">Replay</button>
     <button id="solutionBtn" style="display: none;">Find Best Solution?</button>
     <ul id="sports">
-        <!-- These are the list items. Each sport is an item in the list. 
-        They all have the class "sport", so they can be selected as a group in the JavaScript. -->
+
         <li class="sport" data-sport="Football">Football</li>
         <li class="sport" data-sport="Tennis">Tennis</li>
         <li class="sport" data-sport="Rugby">Rugby</li>
@@ -137,7 +130,7 @@
         <li class="sport" data-sport="Badminton">Badminton</li>
             
     </ul>
-        <!-- Modal content for Settings -->
+        
         <div id="settingsModal" class="setmodal">
             <div class="set-modal-content">
                 
@@ -154,7 +147,7 @@
                             </label>
                         </div>
                     </li>
-                    <!-- Add more settings here -->
+                    
                 </ul>
             </div>
         </div>
@@ -179,9 +172,9 @@
             </div>
         </div>
 
-    <!-- This is the script tag. It includes a JavaScript file. The JavaScript code in the file will be executed. -->
+    
 
-    <!-- This line includes the JavaScript file 'script.js' into the HTML document. The 'src' attribute specifies the source file of the script. -->
+    
     <script src="script.js"></script>
 </body>
 </html>

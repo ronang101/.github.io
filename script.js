@@ -1,6 +1,3 @@
-
-
-// This line gets the HTML element with the id 'generateBtn' (which is our button) and assigns it to the variable 'generateBtn'.
 const generateBtn = document.getElementById('generateBtn');
 const sportsListContainer = document.getElementById('sports');
 // This line gets the HTML element with the id 'flag' (which is our image) and assigns it to the variable 'flagImage'.
@@ -30,7 +27,7 @@ var spans = document.getElementsByClassName("close");
 
 
 
-// List of your preferred countries
+
 const availableCountries = ['Ireland',   'France',   'New Zealand',  'South Africa', 'Scotland', 'England',  'Australia',    'Argentina',    'Wales',    'Japan',    'Georgia',  'Samoa',    'Fiji', 'Italy',    'Tonga',    'Portugal', 'Uruguay',  'United States',    'Romania',  'Spain',    'Namibia',  'Chile',    'Canada',   'Hong Kong',    'russia',   'Netherlands',  'Switzerland',  'Brazil',   'Belgium',  'South Korea',  'Zimbabwe', 'Germany',  'Kenya',    'Poland',   'Czechia',  'Ukraine',  'Colombia', 'Tunisia',  'Sweden',   'Paraguay', 'Philippines',  'Croatia',  'Uganda',   'Madagascar',   'Malta',    'Sri Lanka',    'Morocco',  'Ivory Coast',  'Mexico',   'Trinidad and Tobago',  'Lithuania',    'Malaysia', 'Cook Islands', 'Cayman Islands',   'Singapore',    'Senegal',  'Moldova',  'Guyana',   'Bulgaria', 'Latvia',   'Israel',   'United Arab Emirates', 'Kazakhstan',   'Luxembourg',   'Taiwan',   'Jamaica',  'Bermuda',  'Zambia',   'Nigeria',  'Hungary',  'Serbia',   'Finland',  'Denmark',  'Guam', 'Peru', 'Algeria',  'Botswana', 'Venezuela',    'Thailand', 'Slovenia', 'Saint Vincent and the Grenadines', 'China',    'Barbados', 'Papua New Guinea', 'Ghana',    'India',    'Austria',  'Andorra',  'Uzbekistan',   'Burkina Faso', 'Pakistan', 'Mauritius',    'Bosnia and Herzegovina',   'laos', 'Iran', 'Rwanda',   'Costa Rica',   'Niue', 'Bahamas',  'Burundi',  'Eswatini', 'Norway',   'Solomon Islands',  'Cameroon', 'Indonesia',    'Monaco',   'Greece',   'Vanuatu',  'American Samoa'];
 let countriesList = [...availableCountries];
 let selectedCountriesAndRankings = [];
@@ -109,10 +106,7 @@ for (let i = 0; i < dropdowns.length; i++) {
     }
   }
 
-// `forEach` is a function that performs a specific task (that we define) for each element in an array (or NodeList). 
-// Here, for each "sport" element, we are defining an event listener.
-// The `addEventListener` function allows us to specify a function (the second argument) 
-// that will be run whenever a specified event (the first argument) occurs on the element.
+
 function lightup() {
 
         // First, we want to make sure that no other sport is highlighted as "active". 
@@ -136,8 +130,7 @@ sportsList.forEach(sport => {
 // We're defining a function named generateCountry.
 // This function fetches data from the RestCountries API, selects a random country from the data, and updates the 'flagImage' source URL with the flag of the selected country.
 function generateCountry() {
-    // The fetch function is called with the URL of the RestCountries API.
-    // It returns a Promise that resolves to the Response to that request, whether it is successful or not.
+
     fetch('https://restcountries.com/v3.1/all')
 
         // The response from the fetch request is passed into the first then() method as an argument.
@@ -208,7 +201,7 @@ replayBtn.addEventListener('click', function() {
     selectedCountriesAndRankings = [];
     countriesList = [...availableCountries];
     // Reset the game state
-    // This code depends on how you've structured your game, but here's an example:
+
     totalScore= 0;
     clickedSportsCount= 0;
     currentCountry = null;
@@ -291,7 +284,6 @@ function sportsrankings() {
                     solutionBtn.style.display ='block';
                     solutionBtn.classList.add('clickable');
                     // Move sports list to the center of the screen.
-                    // Assuming you have a container for the sports list with id 'sportsListContainer'.
                     sportsListContainer.classList.add('complete')
                     this.classList.remove('active');
                     
@@ -301,9 +293,7 @@ function sportsrankings() {
 
         
         
-        // The catch() method returns a Promise and deals with rejected cases only.
-        // It behaves the same as calling Promise.prototype.then(undefined, onRejected).
-        // In this case, if any error occurs during the execution of the above code, it will be caught and logged to the console.
+
         .catch(error => console.error('An error occurred:', error));
 
 

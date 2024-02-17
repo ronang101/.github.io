@@ -16,7 +16,7 @@ function calculateSmallestScore(selectedCountriesAndRankings) {
     // Get the list of all countries.
     const countries = Object.keys(selectedCountriesAndRankings);
 
-    // Get the list of all sports for the first country (assuming that the same list of sports applies to all countries).
+    // Get the list of all sports for the first country.
     const sports = countries.length > 0 ? Object.keys(selectedCountriesAndRankings[countries[0]]) : [];
 
     // Get all permutations of the list of sports.

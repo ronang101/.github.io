@@ -1,12 +1,12 @@
-/* Styles for the whole body of the document */
+
 body {
-  /* Set the background color to a dark gray (#222) */
+ 
   background-color: #222;
   
-  /* Set the text color to a lighter gray (#ddd) */
+ 
   color: #ddd;
 
-  /* Set the default font for the entire document to Arial, with any sans-serif font as a fallback */
+ 
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@ html {
   margin: 0;
   padding: 0;
 }
-/* Styles for all button elements */
+
 #generateBtn {
   position: absolute;
   top: 50%;
@@ -30,16 +30,16 @@ html {
   white-space: nowrap;
   text-align: center;
   font-size: 2rem;
-  /* Set the text color to a lighter gray (#ddd) */
+ 
 
-  /* Set the background color to a dark gray (#444) */
+ 
   background-color: #222;
   padding: 2rem;
 
 
-  /* Add padding to the button to increase its clickable area and improve its appearance */
+ 
 
-  /* Change the cursor to a pointer when hovering over the button, to indicate that it's clickable */
+ 
   cursor: pointer;
 
   border: none; 
@@ -66,7 +66,7 @@ html {
   border: 2px solid #efbe53; 
   color: #efbe53;
   border-radius: 20px;
-  /* Added properties */
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +76,7 @@ html {
 
 
 button.clickable:hover {
-  /* Change the background color to a slightly lighter gray (#555) */
+ 
   background-color: #555 !important;
   cursor: pointer;
 }
@@ -87,7 +87,7 @@ button.clickable:hover {
 
 
 
-/* Styles for unordered list elements */
+
 #sports {
   position: absolute;
   top: 48%;
@@ -97,11 +97,11 @@ button.clickable:hover {
   align-items: center;
   padding: 0;
   width: 200px;
-  justify-content: space-between; /* space out items equally */
+  justify-content: space-between;
   height: calc(50% - 1rem);
 }
 
-/* Styles for list item elements */
+
 .sport {
   font-size: 1em;
   background-color: #222;
@@ -112,16 +112,16 @@ button.clickable:hover {
   color: #efbe53;
   border-radius: 2rem;
   width: 100%;
-  align-items: center; /* vertically center the content */
-  justify-content: center; /* horizontally center the content */
+  align-items: center;
+  justify-content: center;
 
 
 }
 
 @media (max-width: 600px) {
-  /* Styles for smaller screens */
+ 
   #sports {
-      flex-direction: row;  /* change direction for smaller screens */
+      flex-direction: row; 
       width: 100%;
       position: absolute;
       top: 50%;
@@ -132,7 +132,7 @@ button.clickable:hover {
   
   .sport {
       height: 20%;
-      width: calc(50% - 0.4rem); /* calc used to divide the container space evenly, accounting for margin */
+      width: calc(50% - 0.4rem);
       border-radius: 0;
       padding: 0; 
       margin: 0.2rem;
@@ -148,14 +148,13 @@ li.clickable:hover {
   background-color: #444;
 }
 
-/* Styles for list item elements when they have the class 'active' */
-/* The .active class applies to the currently selected sport. */   
-/* ".active" is another class selector, it selects HTML elements with class="active". 
-So when a sport item has the "active" class, it will be green. */
+
+   
+
 
 
 li.active {
-  /* Change the background color to green (#28a745) */
+ 
   background-color: #8b6514;
   color:black;
   
@@ -165,27 +164,27 @@ li.active {
 
 
 
-/* Styles for the element with the id 'generateButton' */
 
 
-/* Styles for the element with the id 'scoreBanner' */
+
+
 #scoreBanner {
   margin: 0;
   padding: 0;
   top: 32.5%;
   position: absolute;
 
-  /* Hide the score banner by default */
+ 
   display: none;
 
-  /* Set the text color to green (#28a745) */
+ 
   color: #efbe53;
 
-  /* Center the text within the score banner */
+ 
   text-align: center;
   align-items: center;
   justify-content: center;
-  /* Set the font size of the score banner to 24 pixels */
+ 
   font-size: 2rem;
   flex-direction: column;
 
@@ -201,14 +200,14 @@ li.active {
 
 
 
-/* CSS rule for the HTML element with id 'flag' */
+
 #flag {
   position: absolute;
   display: none;
-  /* Setting a fixed width for the element, so the size of the element does not depend on its content */
+ 
   width: 40%;
   object-fit: contain;
-  /* Setting a fixed height for the element, so the size of the element does not depend on its content */
+ 
   height: 30%;
 
 
@@ -220,10 +219,10 @@ li.active {
   #flag {
       position: absolute;
       display: none;
-      /* Setting a fixed width for the element, so the size of the element does not depend on its content */
+     
       width: 80%;
   
-      /* Setting a fixed height for the element, so the size of the element does not depend on its content */
+     
       height: 30%;
   
   
@@ -252,27 +251,27 @@ li.active {
 }
 
 .setmodal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 .set-modal-content {
   position: relative;
   background-color: #222;
   top: 25%;
-  margin: auto; /* Centers the modal */
+  margin: auto;
   padding: 0rem;
   box-sizing: border-box;
-  width: 80%; /* Take 80% of the width of the screen */
-  height: 50%; /* Take 50% of the height of the screen */
+  width: 80%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -291,8 +290,8 @@ li.active {
   align-items: center;
   box-sizing: border-box;
   width: 90%;
-  margin: 0;  /* Add this line */
-  padding: 0; /* Add this line */
+  margin: 0; 
+  padding: 0;
 }
 
 .settings-row {
@@ -302,7 +301,7 @@ li.active {
   width: 100%;
   align-items: center;
   padding-bottom: 0.2rem;
-  border-bottom: 1px solid #999; /* Add bottom border to each settings row */
+  border-bottom: 1px solid #999;
 }
 
 .switch {
@@ -322,7 +321,7 @@ li.active {
 
 
 .slider {
-  position: absolute; /* Change to relative */
+  position: absolute;
   display: inline-block;
   cursor: pointer;
   top: 0;
@@ -336,7 +335,7 @@ li.active {
 }
 
 .slider:before {
-  position: absolute; /* Change to relative */
+  position: absolute;
   display: inline-block;
   content: "";
   height: 1rem;
@@ -363,7 +362,7 @@ input:checked + .slider:before {
   transform: translateX(1.5rem);
 }
 
-/* CSS for the country name display */
+
 .country-name {
 
   position: absolute;
@@ -373,19 +372,19 @@ input:checked + .slider:before {
   color: #875d03;
   display: none;
   width: 100%;
-  /* Center the text by positioning it halfway down the parent element and halfway across. */
-  /* Adjust the '50%' in 'top' property to a lower value to move the text upward */
-  top: 47.5%; /* or whatever value that suits your needs */
+ 
+ 
+  top: 47.5%;
   left: 50%;
   
-  /* Use transform to ensure the center of the text is at the midpoint, not the top-left corner. */
+ 
   transform: translate(-50%, -50%);
 }
 
-/* Style the dropdown button to fit into navbar */
 
 
-/* Style the dropdown button to change color on hover*/
+
+
 .dropdown .dropbtn {
   display: flex; 
   align-items: center;
@@ -395,7 +394,7 @@ input:checked + .slider:before {
   color: #efbe53;
 }
 
-/* Dropdown content (hidden by default) */
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -405,7 +404,7 @@ input:checked + .slider:before {
   z-index: 1;
 }
 
-/* Links inside the dropdown */
+
 .dropdown-content a {
   padding: 12px 16px;
   text-decoration: none;
@@ -425,7 +424,7 @@ input:checked + .slider:before {
   display: flex;
   position: relative;
 
-  justify-content: space-between; /* changed this to flex-start */
+  justify-content: space-between;
   align-items: center;
   background-color: #222;
   width: 100%;
@@ -443,7 +442,7 @@ input:checked + .slider:before {
   background-color: #222;
   margin: 5px 0;
 
-  /* Add padding to the list item to increase its clickable area and improve its appearance */
+ 
   padding: 10px;
 }
 
@@ -468,21 +467,21 @@ input:checked + .slider:before {
 }
 
 
-/* The Modal (background) */
+
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content */
+
 .modal-content {
   position: relative;
   top: 10%;
@@ -499,32 +498,32 @@ input:checked + .slider:before {
 .modal-content-wrapper {
   left: 0.5%;
   position: relative;
-  height: 99%; /* Full height */
-  width: 99%;  /* Full width */
-  overflow: auto; /* Enable scroll */
+  height: 99%;
+  width: 99%; 
+  overflow: auto;
 }
-/* For WebKit browsers */
+
 .modal-content-wrapper::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
+  width: 8px;
 }
 
 .modal-content-wrapper::-webkit-scrollbar-thumb {
-  background: #888; /* Color of the scroll thumb */
-  border-radius: 10px; /* Roundness of the scroll thumb */
+  background: #888;
+  border-radius: 10px;
 }
 
 .modal-content-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color of the scroll thumb when hovered */
+  background: #555;
 }
 
-/* For Firefox */
+
 .modal-content-wrapper {
   scrollbar-width: thin;
-  scrollbar-color: #888 #333; /* thumb and track color */
+  scrollbar-color: #888 #333;
 }
 
 
-/* The Close Button */
+
 .close {
   color: #aaaaaa;
   float: right;
@@ -554,27 +553,27 @@ input:checked + .slider:before {
 }
 
 #Hist_Modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 #hist-modal-content {
   position: relative;
   background-color: #222;
   top: 30%;
-  margin: auto; /* Centers the modal */
+  margin: auto;
   padding: 0rem;
   box-sizing: border-box;
-  width: 100%; /* Take 80% of the width of the screen */
-  height: 70%; /* Take 50% of the height of the screen */
+  width: 100%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -615,7 +614,7 @@ input:checked + .slider:before {
   margin-top: 20px;
 
 }
-/* Histogram Bars */
+
 #histogram {
   flex-grow: 1;
   position: relative;
@@ -634,8 +633,8 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   height: 10%;
-  background-color: #efbe53; /* Green color for bars */
-  transition: width 1s ease; /* Smooth transition for height changes */
+  background-color: #efbe53;
+  transition: width 1s ease;
 }
 
 
@@ -645,17 +644,17 @@ input:checked + .slider:before {
   position: absolute;
   width: auto;
   text-align: center;
-  font-size: 14px; /* Adjust as needed */
+  font-size: 14px;
 }
 
 .range-text {
   color: #efbe53;
-  left: -70px;  /* Adjust as needed */
+  left: -70px; 
 }
 
 .count-text {
   color:#222;
-  left: calc(50% - 4px);  /* Adjust as needed */
+  left: calc(50% - 4px); 
 }
 
 
@@ -697,16 +696,16 @@ input:checked + .slider:before {
 }
 
 #InstructionsModal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 #InstructionsWrapper {
@@ -721,7 +720,7 @@ input:checked + .slider:before {
   justify-content: start;
   align-items: center;
   border-radius: 1rem;
-  overflow: hidden; /* Hide overflow */
+  overflow: hidden;
 }
 
 #Instructions {
@@ -731,12 +730,12 @@ input:checked + .slider:before {
   align-items: center;
   width: 100%;
   height: 100%;
-  overflow: auto;  /* Enable scroll */
-  padding: 10px;  /* Add padding to keep text away from the border */
-  box-sizing: border-box;  /* To make sure padding doesn't increase size */
+  overflow: auto; 
+  padding: 10px; 
+  box-sizing: border-box; 
 }
 
-/* ...existing scrollbar styles ... */
+
 
 #Instructions h1{
   font-size: 20px;
@@ -760,8 +759,8 @@ input:checked + .slider:before {
   color: #efbe53;
   border-radius: 2rem;
   width: 50%;
-  align-items: center; /* vertically center the content */
-  justify-content: center; /* horizontally center the content */
+  align-items: center;
+  justify-content: center;
 
 }
 #France_Flag {
@@ -770,24 +769,24 @@ input:checked + .slider:before {
   flex-shrink: 0;
 }
 
-/* Webkit browsers like Chrome, Safari */
+
 #Instructions::-webkit-scrollbar {
-  width: 5px;  /* width of the scrollbar */
+  width: 5px; 
 }
 
 #Instructions::-webkit-scrollbar-thumb {
-  background-color: #888;  /* color of the scroll thumb */
-  border-radius: 4px;  /* roundness of the scroll thumb */
+  background-color: #888; 
+  border-radius: 4px; 
 }
 
 #Instructions::-webkit-scrollbar-thumb:hover {
-  background-color: #555;  /* color of the scroll thumb when hovered */
+  background-color: #555; 
 }
 
-/* Firefox */
+
 #Instructions {
-  scrollbar-width: thin;  /* "auto" or "thin" */
-  scrollbar-color: #888 #222;  /* thumb and track color */
+  scrollbar-width: thin; 
+  scrollbar-color: #888 #222; 
 }
 
 .close-instructions {
