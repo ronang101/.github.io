@@ -9,6 +9,8 @@ In order to play the game it is very simple, we have a daily game and a replayab
 
 https://flagogories.com/
 
+*The link above may expire soon as I do not want to renew the domain, however, I can rehost the site using GitHub pages*
+
 ## Additonal code
 
 I also host two sscripts on replit, one script is written in python, the other in node.js. You can view the code here:
